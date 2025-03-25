@@ -1,1 +1,453 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clase Gratuita de Inteligencia Artificial - Nelson Portugal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --primary-light: #dbeafe;
+            --secondary: #7c3aed;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --gray-light: #e2e8f0;
+            --success: #16a34a;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--dark);
+            line-height: 1.6;
+            background-color: #fff;
+            font-size: 16px;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        
+        /* Header */
+        header {
+            background-color: #fff;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 0;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--dark);
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 28px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            font-size: 17px;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
 
+        .cta-button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .cta-button:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        /* Main content */
+        .main-content {
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .page-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto 3rem;
+        }
+
+        /* Video section */
+        .video-container {
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto 3rem;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Transcript section */
+        .transcript-container {
+            max-width: 800px;
+            margin: 2rem auto 3rem;
+            background-color: var(--light);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .transcript-toggle {
+            background-color: var(--primary-light);
+            color: var(--primary);
+            border: none;
+            padding: 1rem;
+            width: 100%;
+            text-align: left;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .transcript-toggle:hover {
+            background-color: #c7e1ff;
+        }
+
+        .transcript-toggle i {
+            transition: transform 0.3s;
+        }
+
+        .transcript-toggle.active i {
+            transform: rotate(180deg);
+        }
+
+        .transcript-content {
+            padding: 1.5rem;
+            display: none;
+            text-align: left;
+            line-height: 1.7;
+            color: var(--gray);
+        }
+
+        .transcript-content.active {
+            display: block;
+        }
+
+        /* CTA Buttons section */
+        .cta-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .cta-btn {
+            padding: 1.25rem 2rem;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: block;
+            text-align: center;
+        }
+
+        .primary-btn {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .primary-btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        }
+
+        .secondary-btn {
+            background-color: var(--secondary);
+            color: white;
+        }
+
+        .secondary-btn:hover {
+            background-color: #6528e0;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 40px 0 20px;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .footer-info {
+            margin-bottom: 1.5rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 1.5rem;
+        }
+        
+        .social-link {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background-color: rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+        
+        .social-link:hover {
+            background-color: rgba(255,255,255,0.2);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            font-size: 0.875rem;
+            color: var(--gray-light);
+        }
+
+        /* Mobile menu */
+        .mobile-menu-toggle {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--dark);
+            background: transparent;
+            border: none;
+            padding: 8px;
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-menu-toggle {
+                display: block;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .nav-links.active {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                right: 0;
+                background-color: white;
+                box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+                padding: 24px;
+                z-index: 100;
+                animation: slideDown 0.3s ease;
+            }
+            
+            .nav-links.active a {
+                padding: 16px 0;
+                border-bottom: 1px solid var(--gray-light);
+            }
+            
+            .nav-links.active a:last-child {
+                border-bottom: none;
+            }
+            
+            @keyframes slideDown {
+                from {
+                    opacity: 0;
+                    transform: translateY(-10px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            .cta-buttons {
+                padding: 0 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header with navigation -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo">
+                    <img src="http://nelsonportugal.com/wp-content/uploads/2016/06/logo.png" alt="Nelson Portugal" height="50">
+                </a>
+                <div class="nav-links">
+                    <a href="#">Clase Gratuita</a>
+                    <a href="https://nelsonportugalr.github.io/taller">Taller</a>
+                    <a href="https://nelsonportugalr.github.io/">Bootcamp</a>
+                </div>
+                <button class="mobile-menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main content -->
+    <main class="main-content">
+        <div class="container">
+            <h1 class="page-title">Clase Gratuita de Inteligencia Artificial</h1>
+            <p class="subtitle">Aprende cómo la IA puede transformar tu productividad y carrera profesional</p>
+
+            <!-- Video Section -->
+            <div class="video-container">
+                <!-- Reemplazar con el iframe de Vimeo cuando esté disponible -->
+                <iframe src="https://player.vimeo.com/video/123456789" allowfullscreen></iframe>
+            </div>
+
+            <!-- Transcript Section -->
+            <div class="transcript-container">
+                <button class="transcript-toggle">
+                    Ver transcripción
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="transcript-content">
+                    <p>Hola a todos, bienvenidos a esta clase gratuita de Inteligencia Artificial Aplicada. 
+                    Soy Nelson Portugal y hoy vamos a hablar sobre cómo puedes integrar la IA en tu día a día para multiplicar tu productividad.</p>
+
+                    <p>En esta clase aprenderás:</p>
+                    <ul>
+                        <li>Los fundamentos básicos de la IA y cómo está transformando todas las industrias</li>
+                        <li>Las herramientas clave que debes conocer para empezar a aprovechar esta tecnología</li>
+                        <li>Técnicas prácticas de ingeniería de prompts para obtener resultados excepcionales</li>
+                        <li>Cómo automatizar tareas repetitivas para enfocarte en lo verdaderamente importante</li>
+                    </ul>
+
+                    <p>Lo más importante que quiero que entiendas hoy es que la IA no es el futuro, es el presente. 
+                    Y quienes no se adapten rápidamente, se quedarán atrás en el mercado laboral...</p>
+
+                    <p>[La transcripción completa se agregará aquí]</p>
+                </div>
+            </div>
+
+            <!-- CTA Buttons -->
+            <div class="cta-buttons">
+                <a href="https://nelsonportugalr.github.io/taller" class="cta-btn primary-btn">
+                    <i class="fas fa-rocket"></i> Integra la IA en tu día a día y sé más productivo
+                </a>
+                <a href="https://nelsonportugalr.github.io/" class="cta-btn secondary-btn">
+                    <i class="fas fa-graduation-cap"></i> Domina la IA y asegura tu futuro laboral
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-info">
+                <p>Nelson Portugal | Consultor en IA Aplicada</p>
+                <p>Email: nportugal@trasciende.la</p>
+            </div>
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/nelsonportugal/" target="_blank" class="social-link">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="https://x.com/Nelson1614" target="_blank" class="social-link">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="https://www.facebook.com/blog.nelsonportugal" target="_blank" class="social-link">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://www.instagram.com/nelson1614/" target="_blank" class="social-link">
+                    <i class="fab fa-instagram"></i>
+                </a>
+            </div>
+            <p class="copyright">© 2025 Portugal Research International SAC. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileMenuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Transcript toggle
+        const transcriptToggle = document.querySelector('.transcript-toggle');
+        const transcriptContent = document.querySelector('.transcript-content');
+        
+        transcriptToggle.addEventListener('click', () => {
+            transcriptToggle.classList.toggle('active');
+            transcriptContent.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>
