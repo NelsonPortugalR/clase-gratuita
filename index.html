@@ -145,7 +145,7 @@
         .video-container {
             width: 100%;
             max-width: 900px;
-            margin: 0 auto 3rem;
+            margin: 0 auto 2rem; /* Reducido de 3rem a 2rem (margen inferior) */
             box-shadow: 0 15px 30px rgba(0,0,0,0.1);
             border-radius: 12px;
             overflow: hidden;
@@ -217,6 +217,19 @@
             gap: 1.5rem;
             max-width: 600px;
             margin: 0 auto;
+        }
+
+        .cta-option {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .cta-description {
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
         }
 
         .cta-btn {
@@ -366,8 +379,8 @@
                 </a>
                 <div class="nav-links">
                     <a href="#">Clase Gratuita</a>
-                    <a href="https://nelsonportugalr.github.io/taller" target="_blank">Taller</a>
-                    <a href="https://nelsonportugalr.github.io/" target="_blank">Bootcamp</a>
+                    <a href="https://nelsonportugalr.github.io/taller" target="_blank">Taller Integral</a>
+                    <a href="https://nelsonportugalr.github.io/" target="_blank">Bootcamp Avanzado</a>
                 </div>
                 <button class="mobile-menu-toggle">
                     <i class="fas fa-bars"></i>
@@ -383,7 +396,7 @@
             <p class="subtitle">Aprende cómo la IA puede transformar tu productividad y carrera profesional</p>
 
             <!-- Video Section -->
-            <div class="video-container">
+            <div class="video-container" style="margin-top: 1.5rem;"><!-- Reducido el margen superior -->
                 <!-- Reemplazar con el iframe de Vimeo cuando esté disponible -->
                 <iframe src="https://player.vimeo.com/video/1069198963" allowfullscreen></iframe>
             </div>
@@ -466,12 +479,18 @@
 
             <!-- CTA Buttons -->
             <div class="cta-buttons">
-                <a href="https://nelsonportugalr.github.io/taller" target="_blank" class="cta-btn primary-btn">
-                    <i class="fas fa-rocket"></i> Integra la IA en tu día a día y sé más productivo
-                </a>
-                <a href="https://nelsonportugalr.github.io/" target="_blank" class="cta-btn secondary-btn">
-                    <i class="fas fa-graduation-cap"></i> Domina la IA y asegura tu futuro laboral
-                </a>
+                <div class="cta-option">
+                    <p class="cta-description">Taller de Inteligencia Artificial Aplicada</p>
+                    <a href="https://nelsonportugalr.github.io/taller" target="_blank" class="cta-btn primary-btn">
+                        <i class="fas fa-rocket"></i> Integra la IA en tu día a día y sé más productivo
+                    </a>
+                </div>
+                <div class="cta-option">
+                    <p class="cta-description">Bootcamp Avanzado de Automatización</p>
+                    <a href="https://nelsonportugalr.github.io/" target="_blank" class="cta-btn secondary-btn">
+                        <i class="fas fa-graduation-cap"></i> Domina la IA y asegura tu futuro laboral
+                    </a>
+                </div>
             </div>
         </div>
     </main>
@@ -510,13 +529,20 @@
             navLinks.classList.toggle('active');
         });
 
-        // Transcript toggle
+        // Transcript toggle with text change
         const transcriptToggle = document.querySelector('.transcript-toggle');
         const transcriptContent = document.querySelector('.transcript-content');
         
         transcriptToggle.addEventListener('click', () => {
             transcriptToggle.classList.toggle('active');
             transcriptContent.classList.toggle('active');
+            
+            // Cambiar el texto del botón según su estado
+            if (transcriptToggle.classList.contains('active')) {
+                transcriptToggle.innerHTML = 'Ocultar transcripción <i class="fas fa-chevron-up"></i>';
+            } else {
+                transcriptToggle.innerHTML = 'Ver transcripción <i class="fas fa-chevron-down"></i>';
+            }
         });
     </script>
 </body>
